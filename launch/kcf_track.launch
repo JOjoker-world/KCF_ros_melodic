@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="image_transport" type="republish" name="republish_to_raw" args="compressed in:=/usb_cam/image_raw  raw out:=/republish/image_raw" />
+
+    <node pkg="kcf_track" type="kcf_track_node" name="kcf_node" output="screen">
+        <remap from="/camera/rgb/image_color"  to="/republish/image_raw" />
+        <remap from="/tracker/cmd_vel"  to="/cmd_vel" />
+    </node>
+</launch>
